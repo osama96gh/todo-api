@@ -12,5 +12,5 @@ mongoose.connect(process.env.DB_URL, err => {
 
 module.exports = {
     Accoutnt: require('../accounts/accounts.model'),
-    test:true,
+    Todo: require('../todos/todo.model',),
 }
