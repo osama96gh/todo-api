@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require('../_helpers/db');
+const jwt = require('jsonwebtoken');
 
 router.post('/login', login)
 router.post('/register', register)
@@ -15,12 +16,12 @@ async function login(req, res) {
         return res.send('account not found');
     }
     if (account.password != password) {
-        console.error(account.password+" "+pass);
         return res.send('password mismatch')
-
     }
+    let token = jwt.sign({account},process.env.Secret_key)
 
-    return res.send(account)
+    
+    return res.json(token);
 
 }
 
